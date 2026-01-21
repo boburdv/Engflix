@@ -3,37 +3,35 @@
 import { useState, useEffect } from "react";
 
 export default function Header() {
-  const [showGradient, setShowGradient] = useState(false);
+  const [ShowBlur, setShowBlur] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setShowGradient(window.scrollY > 80);
+    const handleScroll = () => setShowBlur(window.scrollY > 80);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
     <div className="fixed top-0 left-0 z-50 w-full">
-      <div
-        className={`absolute top-0 left-0 w-full h-full bg-gradient-to-t from-transparent to-black transition-opacity duration-800 pointer-events-none ${showGradient ? "opacity-100" : "opacity-0"}`}
-      />
-      <div className="relative max-w-7xl mx-auto flex items-center justify-between pt-5 pb-20 px-4">
+      <div className={`absolute top-0 left-0 w-full h-full backdrop-blur-sm bg-black/70 transition-opacity duration-800 pointer-events-none ${ShowBlur ? "opacity-100" : "opacity-0"}`} />
+      <div className="relative max-w-7xl mx-auto flex items-center justify-between py-5 px-4 text-[15px]">
         <img src="/engflix-logo.png" alt="logo" className="w-32" />
         <nav>
           <ul className="flex gap-7 uppercase">
             <li>
-              <a href="/" className="text-[var(--white)] hover:text-[var(--lime)] transition-colors duration-400">
+              <a href="/" className="text-[var(--white)] hover:text-[var(--lime)] transition-colors duration-300">
                 Home
               </a>
             </li>
             <li className="text-[var(--second-dark)]">|</li>
             <li>
-              <a href="/movies" className="text-[var(--white)] hover:text-[var(--lime)] transition-colors duration-400">
+              <a href="/movies" className="text-[var(--white)] hover:text-[var(--lime)] transition-colors duration-300">
                 Movies
               </a>
             </li>
             <li className="text-[var(--second-dark)]">|</li>
             <li>
-              <a href="/about" className="text-[var(--white)] hover:text-[var(--lime)] transition-colors duration-400">
+              <a href="/about" className="text-[var(--white)] hover:text-[var(--lime)] transition-colors duration-300">
                 About us
               </a>
             </li>

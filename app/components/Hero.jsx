@@ -34,7 +34,7 @@ export default function Hero() {
   const rest = movie.title.split(" ").slice(2).join(" ");
 
   return (
-    <section className="relative h-screen w-full overflow-hidden">
+    <section className="relative h-[600px] w-full overflow-hidden">
       <video ref={videoRef} src={videoSrc} autoPlay loop muted={muted} playsInline className="absolute inset-0 w-full h-full object-cover brightness-55 scale-120" />
 
       <div className="relative z-10 h-full flex items-center">
