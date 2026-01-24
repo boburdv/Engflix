@@ -39,7 +39,7 @@ export default function Hero() {
 
       <div className="relative z-10 h-full flex items-center">
         <div key={current} className="max-w-7xl mx-auto w-full px-4">
-          <h1 className="text-4xl md:text-5xl font-medium animate-slide-top delay-300">
+          <h1 className="text-4xl md:text-5xl font-semibold animate-slide-top delay-300">
             <span className="text-[var(--white)]">{firstTwo}</span> <span className="text-[var(--lime)]">{rest}</span>
           </h1>
 
