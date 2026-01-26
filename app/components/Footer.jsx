@@ -2,7 +2,7 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center mt-16 mb-5 gap-6">
+    <div className="max-w-5xl mx-auto w-full flex flex-col items-center text-center mt-20 mb-5 gap-6">
       <nav>
         <ul className="flex gap-7">
           <li>
@@ -19,7 +19,7 @@ export default function Footer() {
           <li className="text-[var(--second-dark)]">|</li>
           <li>
             <a href="/about" className="text-[var(--white)] hover:text-[var(--lime)] transition-colors duration-300">
-              About us
+              Order
             </a>
           </li>
           <li className="text-[var(--second-dark)]">|</li>
