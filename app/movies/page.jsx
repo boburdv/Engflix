@@ -1,70 +1,70 @@
 "use client";
-import Link from "next/link";
 import { useEffect, useState } from "react";
-import { movieMap } from "@/app/movieMap";
+import Card from "../components/Card";
+import { movieMap } from "../movieMap";
+import Link from "next/link";
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState(""); // qidiruv input
+  const [search, setSearch] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
   const API = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
-  // TMDB dan movieMap dagi filmlarni olish
   useEffect(() => {
     const fetchMovies = async () => {
       try {
         const tmdbIds = Object.values(movieMap);
-        const promises = tmdbIds.map((id) => fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API}`).then((res) => res.json()));
 
-        const moviesData = await Promise.all(promises);
+        const moviesData = await Promise.all(tmdbIds.map((id) => fetch(`https://api.themoviedb.org/3/movie/${id}?api_key=${API}`).then((res) => res.json())));
+
         setMovies(moviesData);
-        setFilteredMovies(moviesData); // dastlab filtr yo‘q
+        setFilteredMovies(moviesData);
       } catch (err) {
-        console.error("Error fetching movies:", err);
+        console.error(err);
       }
     };
 
     fetchMovies();
   }, []);
 
-  // qidiruv filtrini yangilash
   useEffect(() => {
     if (!search) {
       setFilteredMovies(movies);
     } else {
-      const filtered = movies.filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase()));
-      setFilteredMovies(filtered);
+      setFilteredMovies(movies.filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase())));
     }
   }, [search, movies]);
 
   if (!movies.length) return <div className="text-white p-10">Loading...</div>;
 
   return (
-    <div className="max-w-6xl mx-auto p-6 text-white">
-      {/* ===== SEARCH INPUT ===== */}
-      <div className="mb-6">
-        <input
-          type="text"
-          placeholder="Search movies..."
-          value={search}
-          onChange={(e) => setSearch(e.target.value)}
-          className="w-full p-3 rounded bg-neutral-800 text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
-        />
+    <div className="text-white max-w-7xl mx-auto px-4 mt-34">
+      <div className="flex justify-between mb-10">
+        <h1 className="text-3xl">All Movies</h1>
+
+        <div className="flex items-center gap-3 py-2 px-5 w-80 rounded-full border-2 border-[var(--lime)] bg-transparent focus-within:ring-2 focus-within:ring-[var(--lime)] transition-all duration-300">
+          <input
+            type="text"
+            placeholder="Search movies..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className=" w-full text-[var(--white)] placeholder-[var(--second-dark)] focus:outline-none"
+          />
+          <img src="/search-icon.svg" alt="Search" className="w-5 h-5 opacity-80" />
+        </div>
       </div>
 
-      <h1 className="text-4xl font-bold mb-6">Available Movies</h1>
-
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+      <div className="grid grid-cols-5 gap-12 mb-10">
         {filteredMovies.map((movie) => (
-          <Link key={movie.id} href={`/movies/${movie.id}`}>
-            <div className="rounded overflow-hidden cursor-pointer hover:scale-105 transition-transform">
-              {movie.poster_path && <img src={`https://image.tmdb.org/t/p/w300${movie.poster_path}`} alt={movie.title} className="w-full h-auto" />}
-              <h3 className="mt-2 text-sm font-medium">{movie.title}</h3>
-            </div>
-          </Link>
+          <Card key={movie.id} movie={movie} />
         ))}
-        {filteredMovies.length === 0 && <p className="text-gray-400">No movies found.</p>}
+
+        {filteredMovies.length === 0 && <p className="text-gray-400 col-span-5 text-center">No movies found.</p>}
       </div>
+
+      <Link href="/order" className="flex justify-center">
+        <button className="py-1.5 px-5 rounded-full border-2 border-[var(--lime)] text-[var(--white)] btn">TO ORDER</button>
+      </Link>
     </div>
   );
 }
