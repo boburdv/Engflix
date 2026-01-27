@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 
 const MOVIES = [
@@ -66,10 +67,12 @@ export default function Hero() {
           </div>
 
           <div className="mt-11 flex flex-col md:flex-row gap-4 md:gap-0 justify-between max-w-6xl">
-            <button className="py-1.5 px-5 rounded-full border-2 border-[var(--lime)] text-[var(--white)] bg-[var(--dark96)] flex items-center gap-3 animate-slide-top delay-600 btn">
-              <img src="/play-icon.svg" alt="Play" className="w-4 h-4" />
-              PLAY NOW
-            </button>
+            <Link href={`/watch/${movie.id}`}>
+              <button className="btn bg-[var(--dark96)] py-1.5 px-5">
+                <img src="/play-icon.svg" alt="Play" className="w-4 h-4" />
+                PLAY NOW
+              </button>
+            </Link>
 
             <button
               onClick={() => {
@@ -77,7 +80,7 @@ export default function Hero() {
                 videoRef.current.muted = !videoRef.current.muted;
                 setMuted(videoRef.current.muted);
               }}
-              className="py-3 px-3 rounded-full border-2 border-[var(--lime)] text-[var(--white)] bg-[var(--dark96)] btn"
+              className="btn bg-[var(--dark96)] py-2 px-2.5"
             >
               {muted ? <img src="/mute.png" alt="mute" /> : <img src="/volume.png" alt="volume" />}
             </button>

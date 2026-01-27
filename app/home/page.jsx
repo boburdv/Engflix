@@ -31,7 +31,7 @@ export default function Home() {
       </div>
 
       <Link href="/movies" className="flex justify-center">
-        <button className="py-1.5 px-5 rounded-full border-2 border-[var(--lime)] text-white btn">ALL MOVIES</button>
+        <button className="btn py-1.5 px-5">ALL MOVIES</button>
       </Link>
     </div>
   );

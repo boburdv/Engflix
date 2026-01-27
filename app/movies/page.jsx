@@ -65,7 +65,7 @@ export default function MoviesPage() {
       </div>
 
       <Link href="/order" className="flex justify-center">
-        <button className="py-1.5 px-5 rounded-full border-2 border-[var(--lime)] text-[var(--white)] btn">TO ORDER</button>
+        <button className="btn py-1.5 px-5">TO ORDER</button>
       </Link>
     </div>
   );

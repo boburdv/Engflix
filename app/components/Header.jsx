@@ -58,7 +58,7 @@ export default function Header() {
             </select>
           </div>
 
-          <button className="py-1.5 px-5 rounded-full border-2 border-[var(--lime)] text-[var(--white)] btn">SIGN IN</button>
+          <button className="btn py-1.5 px-5">SIGN IN</button>
         </div>
       </div>
     </div>
