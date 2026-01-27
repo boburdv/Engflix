@@ -18,7 +18,7 @@ export default function Header() {
 
   return (
     <div className="fixed top-0 left-0 z-50 w-full">
-      <div className={`absolute top-0 left-0 w-full h-full backdrop-blur-md bg-black/60 transition-opacity duration-800 pointer-events-none ${ShowBlur ? "opacity-100" : "opacity-0"}`} />
+      <div className={`absolute top-0 left-0 w-full h-full backdrop-blur-md bg-black/50 transition-opacity duration-800 pointer-events-none ${ShowBlur ? "opacity-100" : "opacity-0"}`} />
 
       <div className="relative max-w-7xl mx-auto flex items-center justify-between py-5 px-4 text-[15px]">
         <img src="/engflix-logo.png" alt="logo" className="w-32" />

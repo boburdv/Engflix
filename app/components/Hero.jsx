@@ -25,7 +25,10 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [movies]);
 
-  if (!movies.length) return null;
+  // 🔹 FAQAT BITTA KATTA SKELETON
+  if (!movies.length) {
+    return <section className="h-[650px] w-full bg-gray-800 animate-pulse" />;
+  }
 
   const movie = movies[current];
   const videoSrc = MOVIES[current].video;
@@ -35,7 +38,12 @@ export default function Hero() {
 
   return (
     <section className="relative h-[650px] w-full overflow-hidden">
-      <video ref={videoRef} src={videoSrc} autoPlay loop muted={muted} playsInline className="absolute inset-0 w-full h-full object-cover brightness-55 scale-120" />
+      <video ref={videoRef} src={videoSrc} autoPlay loop muted={muted} playsInline className="absolute inset-0 w-full h-full brightness-70 object-cover scale-120" />
+
+      <div
+        className="pointer-events-none absolute bottom-0 left-0 w-full h-[30%]
+               bg-gradient-to-t from-black to-transparent z-[1]"
+      />
 
       <div className="relative z-10 h-full flex items-center">
         <div key={current} className="max-w-7xl mx-auto w-full px-4">

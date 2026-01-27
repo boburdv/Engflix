@@ -1,13 +1,17 @@
 "use client";
+
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
+import CardSkeleton from "../components/CardSkeleton";
 import { movieMap } from "../movieMap";
 import Link from "next/link";
 
 export default function MoviesPage() {
   const [movies, setMovies] = useState([]);
-  const [search, setSearch] = useState("");
   const [filteredMovies, setFilteredMovies] = useState([]);
+  const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(true);
+
   const API = process.env.NEXT_PUBLIC_TMDB_API_KEY;
 
   useEffect(() => {
@@ -21,6 +25,8 @@ export default function MoviesPage() {
         setFilteredMovies(moviesData);
       } catch (err) {
         console.error(err);
+      } finally {
+        setLoading(false);
       }
     };
 
@@ -35,8 +41,6 @@ export default function MoviesPage() {
     }
   }, [search, movies]);
 
-  if (!movies.length) return <div className="text-white p-10">Loading...</div>;
-
   return (
     <div className="text-white max-w-7xl mx-auto px-4 mt-34">
       <div className="flex justify-between mb-10">
@@ -48,18 +52,16 @@ export default function MoviesPage() {
             placeholder="Search movies..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className=" w-full text-[var(--white)] placeholder-[var(--second-dark)] focus:outline-none"
+            className="w-full text-[var(--white)] placeholder-[var(--second-dark)] focus:outline-none"
           />
           <img src="/search-icon.svg" alt="Search" className="w-5 h-5 opacity-80" />
         </div>
       </div>
 
       <div className="grid grid-cols-5 gap-12 mb-10">
-        {filteredMovies.map((movie) => (
-          <Card key={movie.id} movie={movie} />
-        ))}
+        {loading ? Array.from({ length: Object.values(movieMap).length }).map((_, i) => <CardSkeleton key={i} />) : filteredMovies.map((movie) => <Card key={movie.id} movie={movie} />)}
 
-        {filteredMovies.length === 0 && <p className="text-gray-400 col-span-5 text-center">No movies found.</p>}
+        {!loading && filteredMovies.length === 0 && <p className="text-gray-400 col-span-5 text-center">No movies found.</p>}
       </div>
 
       <Link href="/order" className="flex justify-center">
