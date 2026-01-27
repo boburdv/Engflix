@@ -89,13 +89,13 @@ export default function Watch() {
             <p className="max-w-lg">{movie.overview}</p>
 
             <div className="flex gap-5">
-              <button onClick={() => setScroll(true)} className="inline-flex items-center gap-3 py-1.5 px-5 rounded-full border-2 border-[var(--lime)] bg-[var(--dark96)]">
+              <button onClick={() => setScroll(true)} className="inline-flex items-center gap-3 py-1.5 px-5 rounded-full border-2 border-[var(--lime)] bg-[var(--dark96)] btn">
                 <img src="/play-icon.svg" className="w-4 h-4" />
                 WATCH MOVIE
               </button>
 
               {trailer && (
-                <button onClick={() => setOpenTrailer(true)} className="inline-flex items-center gap-3 py-1.5 px-5 rounded-full border-2 border-[var(--lime)]">
+                <button onClick={() => setOpenTrailer(true)} className="inline-flex items-center gap-3 py-1.5 px-5 rounded-full border-2 border-[var(--lime)] btn">
                   <img src="/play-icon.svg" className="w-4 h-4" />
                   TRAILER
                 </button>
@@ -123,7 +123,7 @@ export default function Watch() {
       )}
 
       <Link href="/movies" className="flex justify-center">
-        <button className="py-1.5 px-5 rounded-full border-2 border-[var(--lime)]">ALL MOVIES</button>
+        <button className="py-1.5 px-5 rounded-full border-2 border-[var(--lime)] btn">ALL MOVIES</button>
       </Link>
 
       {openTrailer && (
