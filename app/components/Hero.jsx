@@ -26,7 +26,6 @@ export default function Hero() {
     return () => clearInterval(interval);
   }, [movies]);
 
-  // 🔹 FAQAT BITTA KATTA SKELETON
   if (!movies.length) {
     return <section className="h-[650px] w-full bg-gray-800 animate-pulse" />;
   }
