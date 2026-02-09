@@ -24,15 +24,19 @@ export default function Home() {
       <Hero />
 
       <div className="text-white max-w-7xl mx-auto px-4 pb-10">
-        <p className="text-[var(--lime)] mt-10">ONLINE STREAMING</p>
-        <h1 className="text-3xl mt-5 mb-10">The Best Movies</h1>
+        <p className="text-[var(--lime)] text-xs sm:text-sm mt-10">ONLINE STREAMING</p>
+        <h1 className="text-2xl lg:text-3xl mt-4 mb-10">The Best Movies</h1>
 
-        <div className="grid grid-cols-5 gap-12">{loading ? Array.from({ length: 10 }).map((_, i) => <CardSkeleton key={i} />) : movies.map((movie) => <Card key={movie.id} movie={movie} />)}</div>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-10">
+          {loading ? Array.from({ length: 10 }).map((_, i) => <CardSkeleton key={i} />) : movies.map((movie) => <Card key={movie.id} movie={movie} />)}
+        </div>
+
+        <div className="flex justify-center mt-10">
+          <Link href="/movies">
+            <button className="btn py-2 px-5 sm:py-2 sm:px-5 text-sm sm:text-base">ALL MOVIES</button>
+          </Link>
+        </div>
       </div>
-
-      <Link href="/movies" className="flex justify-center">
-        <button className="btn py-1.5 px-5">ALL MOVIES</button>
-      </Link>
     </div>
   );
 }
