@@ -31,42 +31,44 @@ export default function MoviesPage() {
     };
 
     fetchMovies();
-  }, []);
+  }, [API]);
 
   useEffect(() => {
-    if (!search) {
-      setFilteredMovies(movies);
-    } else {
-      setFilteredMovies(movies.filter((movie) => movie.title.toLowerCase().includes(search.toLowerCase())));
-    }
+    if (!search) setFilteredMovies(movies);
+    else setFilteredMovies(movies.filter((movie) => (movie.title || "").toLowerCase().includes(search.toLowerCase())));
   }, [search, movies]);
 
   return (
-    <div className="text-white max-w-7xl mx-auto px-4 mt-34">
-      <div className="flex justify-between mb-10">
-        <h1 className="text-3xl">All Movies</h1>
+    <div className="text-white max-w-7xl mx-auto px-4 mt-24 sm:mt-28 md:mt-32">
+      {/* Title + Search */}
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6 mb-8 sm:mb-10">
+        <h1 className="text-2xl sm:text-3xl">All Movies</h1>
 
-        <div className="flex items-center gap-3 py-2 px-5 w-80 rounded-full border-2 border-[var(--lime)] bg-transparent focus-within:ring-2 focus-within:ring-[var(--lime)] transition-all duration-300">
+        <div className="flex items-center gap-3 py-2 px-4 sm:px-5 w-full sm:w-80 rounded-full border-2 border-[var(--lime)] bg-transparent focus-within:ring-2 focus-within:ring-[var(--lime)] transition-all duration-300">
           <input
             type="text"
             placeholder="Search movies..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full text-[var(--white)] placeholder-[var(--second-dark)] focus:outline-none"
+            className="w-full text-[var(--white)] placeholder-[var(--second-dark)] focus:outline-none text-sm sm:text-base"
           />
-          <img src="/search-icon.svg" alt="Search" className="w-5 h-5 opacity-80" />
+          <img src="/search-icon.svg" alt="Search" className="w-4 h-4 sm:w-5 sm:h-5 opacity-80" />
         </div>
       </div>
 
-      <div className="grid grid-cols-5 gap-12 mb-10">
+      {/* Grid */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-10 mb-10">
         {loading ? Array.from({ length: Object.values(movieMap).length }).map((_, i) => <CardSkeleton key={i} />) : filteredMovies.map((movie) => <Card key={movie.id} movie={movie} />)}
 
-        {!loading && filteredMovies.length === 0 && <p className="text-gray-400 col-span-5 text-center">No movies found.</p>}
+        {!loading && filteredMovies.length === 0 && <p className="text-gray-400 col-span-2 sm:col-span-3 lg:col-span-4 xl:col-span-5 text-center">No movies found.</p>}
       </div>
 
-      <Link href="/order" className="flex justify-center">
-        <button className="btn py-1.5 px-5">TO ORDER</button>
-      </Link>
+      {/* Button */}
+      <div className="flex justify-center">
+        <Link href="/order">
+          <button className="btn py-1.5 px-5">TO ORDER</button>
+        </Link>
+      </div>
     </div>
   );
 }
