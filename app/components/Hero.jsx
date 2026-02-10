@@ -27,48 +27,46 @@ export default function Hero() {
   }, [movies]);
 
   if (!movies.length) {
-    return <section className="h-[650px] w-full bg-gray-800 animate-pulse" />;
+    return <section className="h-[520px] sm:h-[600px] lg:h-[650px] w-full bg-gray-800 animate-pulse" />;
   }
 
   const movie = movies[current];
   const videoSrc = MOVIES[current].video;
 
-  const firstTwo = movie.title.split(" ").slice(0, 2).join(" ");
-  const rest = movie.title.split(" ").slice(2).join(" ");
+  const words = (movie.title || "").split(" ");
+  const firstTwo = words.slice(0, 2).join(" ");
+  const rest = words.slice(2).join(" ");
 
   return (
-    <section className="relative h-[650px] w-full overflow-hidden">
-      <video ref={videoRef} src={videoSrc} autoPlay loop muted={muted} playsInline className="absolute inset-0 w-full h-full brightness-70 object-cover scale-120" />
+    <section className="relative w-full overflow-hidden h-[520px] sm:h-[600px] lg:h-[650px]">
+      <video ref={videoRef} src={videoSrc} autoPlay loop muted={muted} playsInline className="absolute inset-0 w-full h-full brightness-70 object-cover scale-134 lg:scale-115" />
 
-      <div
-        className="pointer-events-none absolute bottom-0 left-0 w-full h-[30%]
-               bg-gradient-to-t from-black to-transparent z-[1]"
-      />
+      <div className="pointer-events-none absolute bottom-0 left-0 w-full h-[34%] sm:h-[30%] bg-gradient-to-t from-black to-transparent z-[1]" />
 
-      <div className="relative z-10 h-full flex items-center">
+      <div className="relative z-10 h-full flex items-end sm:items-center pb-14 sm:pb-0">
         <div key={current} className="max-w-7xl mx-auto w-full px-4">
-          <h1 className="text-4xl md:text-5xl font-semibold animate-slide-top delay-300">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold animate-slide-top delay-300 leading-tight">
             <span className="text-[var(--white)]">{firstTwo}</span> <span className="text-[var(--lime)]">{rest}</span>
           </h1>
 
-          <p className="mt-7 text-sm md:text-base text-[var(--white)] max-w-lg line-clamp-3 animate-slide-top delay-500">{movie.overview}</p>
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--white)] max-w-xl line-clamp-3 animate-slide-top delay-500">{movie.overview}</p>
 
-          <div className="mt-9 flex items-center gap-5 text-[var(--white)] animate-slide-top delay-500">
-            <img src="/movie.svg" alt="movie icon" />
+          <div className="mt-5 sm:mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-[var(--white)] animate-slide-top delay-500 text-xs sm:text-sm">
+            <img src="/movie.svg" alt="movie icon" className="sm:h-auto h-5" />
             <img src="/hd.svg" alt="HD icon" />
-            <span>
+            <span className="truncate max-w-[70vw] sm:max-w-none">
               {movie.genres
                 ?.slice(0, 2)
                 .map((g) => g.name)
                 .join(", ")}
             </span>
-            <span>{movie.release_date?.slice(0, 4)}</span>
+            <span className="opacity-90">{movie.release_date?.slice(0, 4)}</span>
           </div>
 
-          <div className="mt-11 flex flex-col md:flex-row gap-4 md:gap-0 justify-between max-w-6xl">
+          <div className="mt-6 sm:mt-10 flex items-center justify-between max-w-[340px] sm:max-w-6xl">
             <Link href={`/watch/${movie.id}`}>
-              <button className="btn bg-[var(--dark96)] py-1.5 px-5">
-                <img src="/play-icon.svg" alt="Play" className="w-4 h-4" />
+              <button className="btn bg-[var(--dark96)] py-2 px-5 sm:py-2 sm:px-5 text-sm sm:text-base gap-2">
+                <img src="/play-icon.svg" alt="Play" className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
                 PLAY NOW
               </button>
             </Link>
@@ -79,9 +77,10 @@ export default function Hero() {
                 videoRef.current.muted = !videoRef.current.muted;
                 setMuted(videoRef.current.muted);
               }}
-              className="btn bg-[var(--dark96)] py-2 px-2.5"
+              className="btn bg-[var(--dark96)] p-3"
+              aria-label={muted ? "Unmute video" : "Mute video"}
             >
-              {muted ? <img src="/mute.png" alt="mute" /> : <img src="/volume.png" alt="volume" />}
+              <img src={muted ? "/mute.png" : "/volume.png"} alt={muted ? "mute" : "volume"} className="w-4 h-4" />
             </button>
           </div>
         </div>
