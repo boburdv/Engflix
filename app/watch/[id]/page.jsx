@@ -49,8 +49,12 @@ export default function Watch() {
     }
   }, [scroll, video]);
 
-  if (!movie) return <div className="text-white p-10">Loading...</div>;
-
+  if (!movie)
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-black">
+        <div className="w-7 h-7 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    );
   const firstTwo = movie.title.split(" ").slice(0, 2).join(" ");
   const rest = movie.title.split(" ").slice(2).join(" ");
 

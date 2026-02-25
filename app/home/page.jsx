@@ -25,7 +25,7 @@ export default function Home() {
 
       <div className="text-white max-w-7xl mx-auto px-4 pb-10">
         <p className="text-[var(--lime)] text-xs sm:text-sm mt-10">ONLINE STREAMING</p>
-        <h1 className="text-2xl lg:text-3xl mt-4 mb-10">The Best Movies</h1>
+        <h1 className="text-2xl lg:text-3xl mt-4 mb-10">Stream the Best</h1>
 
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6 lg:gap-10">
           {loading ? Array.from({ length: 10 }).map((_, i) => <CardSkeleton key={i} />) : movies.map((movie) => <Card key={movie.id} movie={movie} />)}
