@@ -8,15 +8,15 @@ export default function Card({ movie }) {
   return (
     <Link href={`/watch/${movie.id}`}>
       <div className="cursor-pointer group mb-4">
-        <div className="overflow-hidden relative rounded-md">
-          {!imgLoaded && <div className="bg-gray-800 w-full h-56 sm:h-64 md:h-72 rounded-md animate-pulse" />}
-
+        <div className="overflow-hidden relative shadow-lg shadow-black/50 border border-white/10">
+          {" "}
+          {!imgLoaded && <div className="bg-gray-800 w-full h-56 sm:h-64 md:h-72 animate-pulse" />}
           <img
             src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
             alt={movie.title}
             onLoad={() => setImgLoaded(true)}
             onError={() => setImgLoaded(true)}
-            className={`w-full h-56 sm:h-64 md:h-72 object-cover transition-transform duration-300 group-hover:scale-105 ${imgLoaded ? "block" : "hidden"}`}
+            className={`w-full h-56 sm:h-64 md:h-72 object-cover transition-transform duration-600 group-hover:scale-103 ${imgLoaded ? "block" : "hidden"}`}
           />
         </div>
 
