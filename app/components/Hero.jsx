@@ -45,13 +45,13 @@ export default function Hero() {
 
       <div className="relative z-10 h-full flex items-end sm:items-center pb-14 sm:pb-0">
         <div key={current} className="max-w-7xl mx-auto w-full px-4">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold animate-slide-top delay-300 leading-tight">
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold animate-slide-up d200 leading-tight">
             <span className="text-[var(--white)]">{firstTwo}</span> <span className="text-[var(--lime)]">{rest}</span>
           </h1>
 
-          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--white)] max-w-xl line-clamp-3 animate-slide-top delay-500">{movie.overview}</p>
+          <p className="mt-4 sm:mt-6 text-sm sm:text-base text-[var(--white)] max-w-xl line-clamp-3 animate-slide-up d350">{movie.overview}</p>
 
-          <div className="mt-5 sm:mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-[var(--white)] animate-slide-top delay-500 text-xs sm:text-sm">
+          <div className="mt-5 sm:mt-8 flex flex-wrap items-center gap-x-4 gap-y-2 text-[var(--white)] animate-slide-up d500 text-xs sm:text-sm">
             <img src="/movie.svg" alt="movie icon" className="sm:h-auto h-5" />
             <img src="/hd.svg" alt="HD icon" />
             <span className="truncate max-w-[70vw] sm:max-w-none">
@@ -63,7 +63,7 @@ export default function Hero() {
             <span className="opacity-90">{movie.release_date?.slice(0, 4)}</span>
           </div>
 
-          <div className="mt-6 sm:mt-10 flex items-center justify-between max-w-[340px] sm:max-w-6xl">
+          <div className="mt-6 sm:mt-10 flex items-center justify-between max-w-[340px] sm:max-w-6xl animate-slide-up d500">
             <Link href={`/watch/${movie.id}`}>
               <button className="btn bg-[var(--dark96)] py-2 px-5 sm:py-2 sm:px-5 text-sm sm:text-base gap-2">
                 <img src="/play-icon.svg" alt="Play" className="w-3.5 h-3.5 sm:w-4 sm:h-4" />

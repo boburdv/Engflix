@@ -33,26 +33,23 @@ body {
   background-color: #000000;
 }
 
-.animate-slide-top {
-  animation: slide-top 0.6s ease-out both;
+.animate-slide-up {
+  animation: slide-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.delay-300 {
-  animation-delay: 0.7s;
+.d200 {
+  animation-delay: 0.2s;
 }
-.delay-400 {
-  animation-delay: 0.8s;
+.d350 {
+  animation-delay: 0.35s;
 }
-.delay-500 {
-  animation-delay: 0.9s;
-}
-.delay-600 {
-  animation-delay: 1s;
+.d500 {
+  animation-delay: 0.5s;
 }
 
-@keyframes slide-top {
+@keyframes slide-up {
   from {
-    transform: translateY(-70px);
+    transform: translateY(18px);
     opacity: 0;
   }
   to {
@@ -62,7 +59,7 @@ body {
 }
 
 .btn {
-  @apply inline-flex items-center gap-3 rounded-full border-2 transition-all duration-300 z-10;
+  @apply inline-flex items-center gap-3 rounded-full border-2 transition-all duration-200 z-10;
   border-color: var(--lime);
   color: var(--white);
 }
@@ -71,4 +68,8 @@ body {
   background-color: #fb0000d0;
   box-shadow: 0 4px 15px var(--lime-shadow);
   cursor: pointer;
+}
+
+.btn:active {
+  transform: translateY(1px) scale(0.98);
 }
